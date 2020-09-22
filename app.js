@@ -65,32 +65,32 @@ app.use((req, res, next) => {
 // 3) ROUTES
 // app('/', viewRouter);
 // main route
-app.get(
-  "/",
-  catchAsync(async (req, res) => {
-    const todos = await Todo.find();
+// app.get("/", catchAsync(async (req, res) => {
+//     const todos = await Todo.find();
 
-    console.log(todos);
+//     console.log(todos);
 
-    res.render("index", {
-      title: "To do list",
-      todos,
-    });
-  })
-);
+//     res.render("index", {
+//       title: "To do list",
+//       todos,
+//     });
+//   })
+// );
 
 // create a new message
-app.post(
-  "/api/message",
-  catchAsync(async (req, res, next) => {
-    await Todo.create({
-      message: req.body.message,
-    });
-  })
-);
+// app.post(
+//   "/api/message",
+//   catchAsync(async (req, res, next) => {
+//     await Todo.create({
+//       message: req.body.message,
+//     });
+//   })
+// );
+app.use('/', viewRouter);
+app.post('/api/message', viewRouter);
 
-// app.all("*", (req, res, next) => {
-//   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
-// });
+app.all("*", (req, res, next) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
+});
 
 module.exports = app;

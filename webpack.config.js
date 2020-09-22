@@ -3,7 +3,6 @@ const {resolve} = require('path');
 module.exports = {
   entry: resolve('./src/Todo.js'),
   mode: 'development',
-  watch: true,
   output: {
     path: resolve('./public/js/'),
     filename: 'bundle.min.js'

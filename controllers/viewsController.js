@@ -10,3 +10,23 @@ exports.getIndex = catchAsync(async (req, res, next) => {
     title: "To do list React"
   });
 });
+
+exports.postTodo = catchAsync(async (req, res, next) => {
+ 
+  console.log('lol')
+  
+  await Todo.create({
+    message: req.body.message
+  });
+});
+
+exports.deleteTodo = catchAsync(async (req, res, next) => {
+  const todos = await Todo.findOneAndDelete(req.params.id);
+
+  if (!todos) next('No document found with that ID');
+
+  res.status(204).json({
+    status: 'success',
+    data: null
+  })
+});

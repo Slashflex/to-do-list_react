@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-// import "public/sass/main.scss";
+import "../public/sass/main.scss";
 
 export default class MyForm extends Component {
   constructor() {
@@ -17,7 +17,8 @@ export default class MyForm extends Component {
   }
 
   handleSubmit() {
-    alert("A todo was submitted : " + this.state.value);
+    console.log("A todo was submitted : " + this.state.value);
+    // alert("A todo was submitted : " + this.state.value);
   }
 
   render() {
