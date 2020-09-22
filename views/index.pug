@@ -1,0 +1,18 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Todo list react
+
+body
+  h1= title
+  #root
+
+  if todos
+    ul
+      each todo in todos
+        li
+          p= todo.message
+          button delete
+
+  script(src='js/bundle.min.js')
