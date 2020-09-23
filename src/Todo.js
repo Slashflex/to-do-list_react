@@ -1,38 +1,54 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-import "../public/sass/main.scss";
+import axios from "axios";
+import '../public/sass/main.scss';
+import Input from "./Input";
+import ListTodo from "./ListTodo";
 
-export default class MyForm extends Component {
-  constructor() {
-    super();
+export default class Todo extends Component {
+  state = {
+    todos: [],
+  };
 
-    this.state = { value: "" };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+  componentDidMount() {
+    this.getTodos();
   }
 
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-  }
+  getTodos = () => {
+    axios
+      .get("/api/todos")
+      .then((res) => {
+        if (res.data) {
+          this.setState({
+            todos: res.data,
+          });
+        }
+      })
+      .catch((err) => console.log(err));
+  };
 
-  handleSubmit() {
-    console.log("A todo was submitted : " + this.state.value);
-    // alert("A todo was submitted : " + this.state.value);
-  }
+  deleteTodo = (id) => {
+    axios
+      .delete(`/api/todos/${id}`)
+      .then((res) => {
+        if (res.data) {
+          this.getTodos();
+        }
+      })
+      .catch((err) => console.log(err));
+  };
 
   render() {
-    let { value } = this.state;
-    
-    return (
+    let { todos } = this.state;
 
-      <form onSubmit={this.handleSubmit}>
-        <p>Enter your todo:</p>
-        <input type="text" value={value} onChange={this.handleChange} />
-        <input type="submit" value="submit" />
-      </form>
+    return (
+      <div>
+        <h1>To do list</h1>
+        <Input getTodos={this.getTodos} />
+        <ListTodo todos={todos} deleteTodo={this.deleteTodo} />
+      </div>
     );
   }
 }
 
-render(<MyForm />, document.getElementById("root"));
+render(<Todo />, document.getElementById("root"));

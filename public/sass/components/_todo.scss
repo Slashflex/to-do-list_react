@@ -1,0 +1,88 @@
+h1 {
+  margin: 9rem 0 7rem 0;
+  font-size: 7.5rem;
+  font-weight: 700;
+  text-align: center;
+  color: $color-tertiary;
+}
+ul {
+  margin: 0 auto;
+  width: 35rem;
+  list-style-type: none;
+  padding: 2rem;
+  border-radius: 5px;
+  background-color: $color-primary;
+  box-shadow: 2rem 2rem 6rem $color-primary-dark,
+    -2rem -2rem 6rem $color-primary-light;
+}
+.todoForm {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0 3.5rem 0;
+}
+
+input {
+  border: none;
+  height: 4rem;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  background-color: $color-secondary;
+  color: $color-primary;
+  font-size: 2.5rem;
+  text-align: center;
+  transition: all 0.5s;
+
+  &:focus {
+    outline: none;
+    background: #c3c3c3;
+    box-shadow: inset 20px 20px 60px #a6a6a6, inset -20px -20px 60px #e0e0e0;
+  }
+}
+.todoItem {
+  display: flex;
+  justify-content: center;
+  background-color: $color-tertiary;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  & i {
+    font-size: 1.5rem;
+    color: $trash;
+    transition: all 0.5s;
+    cursor: pointer;
+    align-self: center;
+    margin-right: 0.5rem;
+
+    &:hover {
+      color: $trash-hover;
+      transform: scale(1.1);
+    }
+  }
+}
+li {
+  display: flex;
+  justify-content: center;
+  color: $color-white;
+  width: 100%;
+  font-size: 2rem;
+  padding: 0.5rem;
+  word-break: break-all;
+}
+button {
+  border: none;
+  background-color: $color-secondary;
+  padding: 0 2rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  color: $color-primary;
+  font-weight: 900;
+  border-left: 2px solid $color-primary;
+
+  &:focus {
+    outline: none;
+  }
+}

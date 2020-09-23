@@ -1,7 +1,11 @@
 const {resolve} = require('path');
 
 module.exports = {
-  entry: resolve('./src/Todo.js'),
+  entry: [
+    resolve('./src/Input.js'),
+    resolve('./src/ListTodo.js'),
+    resolve('./src/Todo.js')
+  ],
   mode: 'development',
   output: {
     path: resolve('./public/js/'),
@@ -15,17 +19,6 @@ module.exports = {
         use: {
           loader: "babel-loader"
         }
-      },
-      {
-        test: /\.(png|jpg|gif)$/i,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192,
-            },
-          },
-        ],
       },
       {
         test: /\.s[ac]ss$/i,
