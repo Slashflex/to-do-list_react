@@ -5,7 +5,7 @@ const Todo = require("../models/todoModel");
 router.get("/todos", async (req, res, next) => {
   // returns all data
   await Todo.find({}, "message")
-    .then((data) => res.json(data))
+    .then((data) => res.json(data[0]))
     .catch(next);
 });
 
